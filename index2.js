@@ -1,13 +1,13 @@
-let el_header = document.getElementsByClassName("header");
-let el_brandName = document.getElementsByClassName("brand-text");
-let el_Details = document.getElementsByClassName("product-details");
-let el_feats = document.getElementsByClassName("feat");
+//let el_header = document.getElementsByClassName("header");
+//let el_brandName = document.getElementsByClassName("brand-text")
+let elDetails = document.getElementsByClassName("product-details");
+let elfeats = document.getElementsByClassName("feat");
 let tl = gsap.timeline();
-let el_img = document.getElementsByClassName("product-image")
+let elimg = document.getElementsByClassName("product-image");
 
-//creating an Array from el_feats  HTML Container
-let el_featArr = Array.from(el_feats);
-
+//creating an Array from elfeats  HTML Container
+let el_featArr = Array.from(elfeats);
+let currentSelected = 'galactus';
 
 let featData = {
     galactus: {
@@ -104,43 +104,98 @@ let featData = {
     }
 };
 
-
 /*  EXECUTION STACK */
+init();
 setStartPos();
 animateImg();
 animatefeatures();
 
-
-/* Events */
+/* Events Setup */
 document.getElementsByClassName("prod-1")[0].addEventListener("click", showAres);
 document.getElementsByClassName("prod-2")[0].addEventListener("click", showCosmos);
 document.getElementsByClassName("prod-3")[0].addEventListener("click", showSpear);
 document.getElementsByClassName("prod-4")[0].addEventListener("click", showGalactus);
 
+/*Swipe Gesture Handling */
+var swiper = new Swipe(document.getElementsByTagName('body')[0]);
+swiper.onLeft(doLeftSwipe);
+swiper.onRight(doRightSwipe);
+swiper.run();
+
+
+
+
+
 
 /* FUNCTION DEFINITIONS */
+function init(){
+    document.getElementsByClassName("prod-4")[0].classList.add("style4");
+}
+
+function doLeftSwipe(){
+    if(currentSelected === 'galactus'){
+        showAres();
+        currentSelected = 'ares';
+   }else if(currentSelected === 'ares'){
+        showCosmos();
+        currentSelected = 'cosmos';
+   }else if(currentSelected === 'cosmos'){
+        showSpear();
+        currentSelected = 'spear';
+   }else if(currentSelected === 'spear'){
+        showGalactus();
+        currentSelected = 'galactus';
+   }
+}
+
+function doRightSwipe(){
+    if(currentSelected === 'galactus'){
+        showSpear();
+        currentSelected = 'spear';
+    }else if(currentSelected === 'ares'){
+        showGalactus();
+        currentSelected = 'galactus';
+    }else if(currentSelected === 'cosmos'){
+        showAres();
+        currentSelected = 'ares';
+    }else if(currentSelected === 'spear'){
+        showCosmos();
+        currentSelected = 'cosmos';
+   }
+}
+
 function setStartPos() {
-    tl.set(el_img, { y: 90 });
-    tl.set(el_Details, { x: 50 })
+    tl.set(elimg, { y: 90 });
+    tl.set(elDetails, { x: 50 })
     //tl.set(el_chainwheel_icon, { rotation: 0 });
 }
 
 function animateImg() {
-    tl.to(el_img, { duration: 1, opacity: 1, y: 0, ease: "elastic.out(1, 0.3)" });
+    tl.to(elimg, { duration: 1, opacity: 1, y: 0, ease: "elastic.out(1, 0.3)" });
 }
 
 function animatefeatures() {
-    tl.to(el_Details, { opacity: 1, duration: 1, x: 0, ease: "elastic.out(1, 0.3)" }, "-=0.8")
+    tl.to(elDetails, { opacity: 1, duration: 1, x: 0, ease: "elastic.out(1, 0.3)" }, "-=0.8")
 }
-
 
 //Event Definitions
 function showGalactus() {
+    currentSelected = 'galactus';
+
+    //Remove styles of non-selected elements
+    document.getElementsByClassName("prod-1")[0].classList.remove("style1");
+    document.getElementsByClassName("prod-2")[0].classList.remove("style2");
+    document.getElementsByClassName("prod-3")[0].classList.remove("style3");
+
+    if(document.getElementsByClassName("prod-4")[0].classList.contains("style4") === false){
+        document.getElementsByClassName("prod-4")[0].classList.add("style4");
+    }
+
     let count = 0;
     el_featArr.map((el, i) => {
         Object.keys(featData).map(key => {
             if (key === "galactus") {
-                el_img[0].src = featData[key].image;
+                elimg[0].src = featData[key].image;
                 if (count === 0) {
                     el.innerHTML = featData[key].speed;
                 }
@@ -181,11 +236,22 @@ function showGalactus() {
 }
 
 function showAres() {
+    currentSelected = 'ares';
+
+    //remove styles for non-slelected elements
+    document.getElementsByClassName("prod-2")[0].classList.remove("style2");
+    document.getElementsByClassName("prod-3")[0].classList.remove("style3");
+    document.getElementsByClassName("prod-4")[0].classList.remove("style4");
+
+    if(document.getElementsByClassName("prod-1")[0].classList.contains("style1") === false){
+        document.getElementsByClassName("prod-1")[0].classList.add("style1");
+    }
+
     let count = 0;
     el_featArr.map((el, i) => {
         Object.keys(featData).map(key => {
             if (key === "aresbasic") {
-                el_img[0].src = featData[key].image;
+                elimg[0].src = featData[key].image;
                 if (count === 0) {
                     el.innerHTML = featData[key].speed;
                 }
@@ -226,11 +292,20 @@ function showAres() {
 }
 
 function showCosmos() {
+    currentSelected = 'cosmos';
+
+    document.getElementsByClassName("prod-1")[0].classList.remove("style1");
+    document.getElementsByClassName("prod-3")[0].classList.remove("style3");
+    document.getElementsByClassName("prod-4")[0].classList.remove("style4");
+    if(document.getElementsByClassName("prod-2")[0].classList.contains("style2") === false){
+        document.getElementsByClassName("prod-2")[0].classList.add("style2");
+    }
+    
     let count = 0;
     el_featArr.map((el, i) => {
         Object.keys(featData).map(key => {
             if (key === "cosmos") {
-                el_img[0].src = featData[key].image;
+                elimg[0].src = featData[key].image;
                 if (count === 0) {
                     el.innerHTML = featData[key].speed;
                 }
@@ -271,11 +346,22 @@ function showCosmos() {
 }
 
 function showSpear() {
+    currentSelected = 'spear';
+
+    //Remove styles
+    document.getElementsByClassName("prod-1")[0].classList.remove("style1");
+    document.getElementsByClassName("prod-2")[0].classList.remove("style2");
+    document.getElementsByClassName("prod-4")[0].classList.remove("style4");
+
+    if(document.getElementsByClassName("prod-3")[0].classList.contains("style3") === false){
+        document.getElementsByClassName("prod-3")[0].classList.add("style3");
+    }
+
     let count = 0;
     el_featArr.map((el, i) => {
         Object.keys(featData).map(key => {
             if (key === "speardd") {
-                el_img[0].src = featData[key].image;
+                elimg[0].src = featData[key].image;
                 if (count === 0) {
                     el.innerHTML = featData[key].speed;
                 }
