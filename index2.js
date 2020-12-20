@@ -26,7 +26,7 @@ let featData = {
         price: ""
     },
     aresmtb: {
-        image: "",
+        image: "./assets/ares.png",
         speed: "21 Speed TX 50 with Lever Shifter",
         height: '26"',
         fork: "Threadless Fork",
@@ -56,7 +56,7 @@ let featData = {
         price: ""
     },
     speardd: {
-        image: "",
+        image: "./assets/spear.png",
         height: '26"',
         speed: "Single Speed",
         fork: "Threadless Fork",
@@ -72,7 +72,7 @@ let featData = {
         price: ""
     },
     spearpremium: {
-        image: "",
+        image: "./assets/spear.png",
         height: '26"',
         speed: "21 Speed TX 35 With Lever Shifter",
         fork: "Threadless Fork",
