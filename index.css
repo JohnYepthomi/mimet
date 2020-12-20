@@ -9,6 +9,12 @@ body{
   /*background-image: url("./assets/mainbg.jpg");*/
   /*background-repeat: no-repeat;*/
   /*background-size: 1500px 830px;*/
+  
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .header{
@@ -70,17 +76,21 @@ body{
   color: white;
 }
 
-.prod-4{
-  background-color: gray;
-  color: white;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 3px;
-  border: 1px solid gray;
-}
-
 .prod-1,.prod-2,.prod-3,.prod-4{
   border: 1px solid white;
+}
+
+.prod-2, .prod-3, .prod-4{
+  margin-top: 10px;
+}
+
+.style1, .style2, .style3, .style4 { 
+    background-color: gray;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    border: 1px solid gray;
 }
 
 .prod-1:hover, .prod-2:hover,.prod-3:hover{
@@ -91,14 +101,6 @@ body{
   border-radius: 5px;
   padding-right: 5px;
   padding-left: 5px;
-}
-
-.prod-4:hover{
-  background-color: white;
-  color: gray;
-  border: 1px solid gray;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
 .models{
@@ -124,9 +126,7 @@ align-items: center;
   margin-top: 70px;
 }
 
-.prod-2, .prod-3, .prod-4{
-  margin-top: 10px;
-}
+
 
         /*  ................MEDIA QUERIES.................. */
 
