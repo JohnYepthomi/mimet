@@ -181,6 +181,7 @@ function animatefeatures() {
 //Event Definitions
 function showGalactus() {
     currentSelected = 'galactus';
+    document.getElementsByClassName("prod-name")[0].innerHTML = "GALACTUS";
 
     //Remove styles of non-selected elements
     document.getElementsByClassName("prod-1")[0].classList.remove("style1");
@@ -237,7 +238,8 @@ function showGalactus() {
 
 function showAres() {
     currentSelected = 'ares';
-
+    document.getElementsByClassName("prod-name")[0].innerHTML = "ARES";
+    
     //remove styles for non-slelected elements
     document.getElementsByClassName("prod-2")[0].classList.remove("style2");
     document.getElementsByClassName("prod-3")[0].classList.remove("style3");
@@ -293,6 +295,7 @@ function showAres() {
 
 function showCosmos() {
     currentSelected = 'cosmos';
+    document.getElementsByClassName("prod-name")[0].innerHTML = "COSMOS";
 
     document.getElementsByClassName("prod-1")[0].classList.remove("style1");
     document.getElementsByClassName("prod-3")[0].classList.remove("style3");
@@ -347,6 +350,7 @@ function showCosmos() {
 
 function showSpear() {
     currentSelected = 'spear';
+    document.getElementsByClassName("prod-name")[0].innerHTML = "SPEAR";
 
     //Remove styles
     document.getElementsByClassName("prod-1")[0].classList.remove("style1");
